@@ -21,6 +21,15 @@ const Navbar = () => {
           </Link>
 
           <div className="nav-links desktop-only">
+            <Link to="/dashboard" className="nav-link font-semibold text-emerald-700 hover:text-emerald-800 flex items-center gap-1.5">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+                <rect x="3" y="3" width="7" height="7"></rect>
+                <rect x="14" y="3" width="7" height="7"></rect>
+                <rect x="14" y="14" width="7" height="7"></rect>
+                <rect x="3" y="14" width="7" height="7"></rect>
+              </svg>
+              <span>Mon Espace Patient</span>
+            </Link>
             <a href="#search-section" className="nav-link">Rechercher un médicament</a>
             <a href="#how-it-works" className="nav-link">Comment ça marche</a>
             <a href="#services" className="nav-link">Services</a>
