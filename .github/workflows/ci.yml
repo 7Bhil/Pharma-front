@@ -11,26 +11,36 @@ jobs:
     name: Frontend Lint & Build (React SPA)
     runs-on: ubuntu-latest
 
-    defaults:
-      run:
-        working-directory: ./client
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: Detect working directory
+        id: set-dir
+        run: |
+          if [ -d "client" ]; then
+            echo "app_dir=client" >> $GITHUB_OUTPUT
+            echo "lock_path=client/package-lock.json" >> $GITHUB_OUTPUT
+          else
+            echo "app_dir=." >> $GITHUB_OUTPUT
+            echo "lock_path=package-lock.json" >> $GITHUB_OUTPUT
+          fi
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: 'npm'
-          cache-dependency-path: client/package-lock.json
+          cache-dependency-path: ${{ steps.set-dir.outputs.lock_path }}
 
       - name: Install Dependencies
+        working-directory: ${{ steps.set-dir.outputs.app_dir }}
         run: npm ci
 
       - name: Run Linter
+        working-directory: ${{ steps.set-dir.outputs.app_dir }}
         run: npm run lint
 
       - name: Build React App
+        working-directory: ${{ steps.set-dir.outputs.app_dir }}
         run: npm run build

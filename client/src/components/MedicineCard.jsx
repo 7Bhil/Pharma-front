@@ -1,10 +1,14 @@
 
-const MedicineCard = ({ medicine }) => {
+const MedicineCard = ({ medicine, onOpenDetail, onQuickReserve }) => {
   const isLowStock = medicine.stock < 30;
 
   return (
     <div className="medicine-card">
-      <div className="card-image-wrapper">
+      <div 
+        className="card-image-wrapper cursor-pointer" 
+        onClick={() => onOpenDetail && onOpenDetail(medicine)}
+        title="Voir la fiche détaillée"
+      >
         <img src={medicine.imageUrl} alt={medicine.name} loading="lazy" />
         <span className="category-pill">{medicine.category}</span>
         {isLowStock ? (
@@ -17,7 +21,12 @@ const MedicineCard = ({ medicine }) => {
       <div className="card-body">
         <div className="card-header-info">
           <span className="scientific-badge">{medicine.scientificName}</span>
-          <h3 className="med-title">{medicine.name}</h3>
+          <h3 
+            className="med-title cursor-pointer hover:text-emerald-700 transition-colors"
+            onClick={() => onOpenDetail && onOpenDetail(medicine)}
+          >
+            {medicine.name}
+          </h3>
         </div>
 
         <p className="med-desc">{medicine.description}</p>
@@ -28,12 +37,30 @@ const MedicineCard = ({ medicine }) => {
             <span className="price-sub">Prix indicatif TTC</span>
           </div>
           
-          <button className="btn btn-reserve" title="Réserver en pharmacie">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg>
-            <span>Réserver</span>
-          </button>
+          <div className="flex items-center gap-2">
+            <button 
+              className="p-2 text-slate-500 hover:text-emerald-700 hover:bg-emerald-50 rounded-lg transition-colors border border-slate-200"
+              title="Consulter la notice & disponibilités"
+              onClick={() => onOpenDetail && onOpenDetail(medicine)}
+              aria-label="Notice détaillée"
+            >
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+            </button>
+            <button 
+              className="btn btn-reserve" 
+              title="Ajouter au panier de réservation"
+              onClick={() => onQuickReserve && onQuickReserve(medicine)}
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+              <span>Réserver</span>
+            </button>
+          </div>
         </div>
       </div>
 

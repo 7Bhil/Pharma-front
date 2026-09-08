@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-const Navbar = () => {
+const Navbar = ({ cartCount = 0, onOpenCart }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
@@ -37,6 +37,25 @@ const Navbar = () => {
           </div>
 
           <div className="nav-actions">
+            {/* Bouton Panier Express */}
+            <button 
+              type="button" 
+              onClick={onOpenCart}
+              className="relative p-2.5 text-slate-700 hover:text-emerald-700 hover:bg-emerald-50 rounded-xl transition-all border border-slate-200"
+              title="Consulter le panier de réservation"
+              aria-label="Panier de réservation"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <path d="M16 10a4 4 0 0 1-8 0"></path>
+              </svg>
+              {cartCount > 0 && (
+                <span className="absolute -top-1.5 -right-1.5 bg-emerald-600 text-white text-[11px] font-bold w-5 h-5 rounded-full flex items-center justify-center shadow-md animate-pulse">
+                  {cartCount}
+                </span>
+              )}
+            </button>
             <Link to="/login" className="btn btn-secondary nav-btn">Connexion</Link>
             <Link to="/register" className="btn btn-primary nav-btn-cta">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

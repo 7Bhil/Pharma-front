@@ -98,3 +98,28 @@ export const mockFavoritePharmacies = [
     rating: 4.7,
   },
 ];
+
+export const mockTreatments = [
+  {
+    id: 'treat-1',
+    category: 'Antibiotique',
+    name: 'Amoxicilline 500mg',
+    dosage: '1 gélule matin, midi et soir (3x/jour)',
+    doctor: 'Dr. Ousmane Diop',
+    remainingDoses: 6,
+    totalDoses: 18,
+    statusLabel: 'En cours • Reste 3 jours',
+    isLowStock: false,
+  },
+  {
+    id: 'treat-2',
+    category: 'Antalgique / Fièvre',
+    name: 'Paracétamol Pro 1g',
+    dosage: '1 comprimé si douleur ou fièvre (max 3g/jour)',
+    doctor: 'Dr. Mensah',
+    remainingDoses: 4,
+    totalDoses: 16,
+    statusLabel: 'Stock limité : 4 comprimés',
+    isLowStock: true,
+  },
+];

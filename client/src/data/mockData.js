@@ -13,7 +13,17 @@ export const mockMedicines = [
     price: 1500,
     category: "Antalgique",
     stock: 50,
-    imageUrl: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=700&q=80"
+    imageUrl: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=700&q=80",
+    posology: "1 comprimé toutes les 6 à 8 heures si besoin. Ne pas dépasser 3g (3 comprimés) par jour chez l'adulte.",
+    contraindications: "Insuffisance hépatique sévère, allergie connue au paracétamol.",
+    form: "Comprimé sécable",
+    requiresPrescription: false,
+    genericAlternatives: ["Doliprane 1000mg", "Efferalgan 1g", "Paracétamol Biogaran 1g"],
+    pharmacyAvailability: [
+      { pharmacyId: 1, pharmacyName: "Pharmacie Centrale du Plateau", stock: 35, isDuty: true },
+      { pharmacyId: 2, pharmacyName: "Pharmacie de la Corniche", stock: 15, isDuty: true },
+      { pharmacyId: 3, pharmacyName: "Pharmacie des Jardins", stock: 8, isDuty: false }
+    ]
   },
   {
     id: 2,
@@ -23,7 +33,17 @@ export const mockMedicines = [
     price: 3200,
     category: "Antibiotique",
     stock: 20,
-    imageUrl: "https://images.unsplash.com/photo-1471864190281-a93a3070b6de?auto=format&fit=crop&w=700&q=80"
+    imageUrl: "https://images.unsplash.com/photo-1471864190281-a93a3070b6de?auto=format&fit=crop&w=700&q=80",
+    posology: "1 gélule 3 fois par jour au début des repas pendant 6 à 8 jours selon prescription médicale.",
+    contraindications: "Allergie aux bêtalactamines (pénicillines et céphalosporines), mononucléose infectieuse.",
+    form: "Gélule orale",
+    requiresPrescription: true,
+    genericAlternatives: ["Clamoxyl 500mg", "Amoxicilline Sandoz", "Amoxi-Denk 500"],
+    pharmacyAvailability: [
+      { pharmacyId: 1, pharmacyName: "Pharmacie Centrale du Plateau", stock: 14, isDuty: true },
+      { pharmacyId: 2, pharmacyName: "Pharmacie de la Corniche", stock: 6, isDuty: true },
+      { pharmacyId: 3, pharmacyName: "Pharmacie des Jardins", stock: 0, isDuty: false }
+    ]
   },
   {
     id: 3,
@@ -33,7 +53,17 @@ export const mockMedicines = [
     price: 2800,
     category: "Vitamines",
     stock: 100,
-    imageUrl: "https://images.unsplash.com/photo-1550572017-edd951aa8f72?auto=format&fit=crop&w=700&q=80"
+    imageUrl: "https://images.unsplash.com/photo-1550572017-edd951aa8f72?auto=format&fit=crop&w=700&q=80",
+    posology: "1 comprimé effervescent par jour dissous dans un verre d'eau, de préférence le matin.",
+    contraindications: "Calculs rénaux oxaliques pour des doses prolongées.",
+    form: "Comprimé effervescent",
+    requiresPrescription: false,
+    genericAlternatives: ["Laroscorbine 1g", "C-Vitam 1000"],
+    pharmacyAvailability: [
+      { pharmacyId: 1, pharmacyName: "Pharmacie Centrale du Plateau", stock: 60, isDuty: true },
+      { pharmacyId: 2, pharmacyName: "Pharmacie de la Corniche", stock: 40, isDuty: true },
+      { pharmacyId: 3, pharmacyName: "Pharmacie des Jardins", stock: 25, isDuty: false }
+    ]
   },
   {
     id: 4,
@@ -43,7 +73,17 @@ export const mockMedicines = [
     price: 2200,
     category: "Anti-inflammatoire",
     stock: 45,
-    imageUrl: "https://images.unsplash.com/photo-1587854692152-cbe660dbde88?auto=format&fit=crop&w=700&q=80"
+    imageUrl: "https://images.unsplash.com/photo-1587854692152-cbe660dbde88?auto=format&fit=crop&w=700&q=80",
+    posology: "1 comprimé au cours d'un repas. Renouveler après 6 heures si besoin (max 1200mg/jour).",
+    contraindications: "Ulcère gastroduodénal évolutif, grossesse à partir du 6ème mois, insuffisance rénale.",
+    form: "Comprimé pelliculé",
+    requiresPrescription: false,
+    genericAlternatives: ["Advil 400mg", "Nurofen Flash", "Spedifen 400"],
+    pharmacyAvailability: [
+      { pharmacyId: 1, pharmacyName: "Pharmacie Centrale du Plateau", stock: 25, isDuty: true },
+      { pharmacyId: 2, pharmacyName: "Pharmacie de la Corniche", stock: 20, isDuty: true },
+      { pharmacyId: 3, pharmacyName: "Pharmacie des Jardins", stock: 12, isDuty: false }
+    ]
   },
   {
     id: 5,
@@ -53,7 +93,17 @@ export const mockMedicines = [
     price: 3500,
     category: "Voies Respiratoires",
     stock: 30,
-    imageUrl: "https://images.unsplash.com/photo-1631549916768-4119b2e5f926?auto=format&fit=crop&w=700&q=80"
+    imageUrl: "https://images.unsplash.com/photo-1631549916768-4119b2e5f926?auto=format&fit=crop&w=700&q=80",
+    posology: "1 cuillère à soupe (15ml) 3 à 4 fois par jour. Espacer les prises d'au moins 4 heures.",
+    contraindications: "Insuffisance respiratoire, asthme bronchique, enfant de moins de 12 ans sans avis.",
+    form: "Flacon sirop 150ml",
+    requiresPrescription: false,
+    genericAlternatives: ["Tussidane Sirop", "Humex Toux Sèche"],
+    pharmacyAvailability: [
+      { pharmacyId: 1, pharmacyName: "Pharmacie Centrale du Plateau", stock: 18, isDuty: true },
+      { pharmacyId: 2, pharmacyName: "Pharmacie de la Corniche", stock: 12, isDuty: true },
+      { pharmacyId: 3, pharmacyName: "Pharmacie des Jardins", stock: 5, isDuty: false }
+    ]
   },
   {
     id: 6,
@@ -63,7 +113,17 @@ export const mockMedicines = [
     price: 1800,
     category: "Hygiène",
     stock: 200,
-    imageUrl: "https://images.unsplash.com/photo-1584744982491-665216d95f8b?auto=format&fit=crop&w=700&q=80"
+    imageUrl: "https://images.unsplash.com/photo-1584744982491-665216d95f8b?auto=format&fit=crop&w=700&q=80",
+    posology: "Appliquer 3ml sur mains sèches et frictionner vigoureusement pendant au moins 30 secondes.",
+    contraindications: "Usage externe exclusif. Ne pas appliquer sur plaies ouvertes ou muqueuses.",
+    form: "Flacon pompe 500ml",
+    requiresPrescription: false,
+    genericAlternatives: ["Aniosgel 85 NPC", "Sterillium"],
+    pharmacyAvailability: [
+      { pharmacyId: 1, pharmacyName: "Pharmacie Centrale du Plateau", stock: 120, isDuty: true },
+      { pharmacyId: 2, pharmacyName: "Pharmacie de la Corniche", stock: 80, isDuty: true },
+      { pharmacyId: 3, pharmacyName: "Pharmacie des Jardins", stock: 45, isDuty: false }
+    ]
   }
 ];
 
