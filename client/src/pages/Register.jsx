@@ -2,7 +2,6 @@ import { useState, useId } from 'react';
 import { Link } from 'react-router-dom';
 
 const Register = () => {
-  const [role, setRole] = useState('client'); // 'client' | 'pharmacist'
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [termsAccepted, setTermsAccepted] = useState(false);
@@ -14,9 +13,6 @@ const Register = () => {
     phone: '',
     email: '',
     password: '',
-    pharmacyName: '',
-    rppsNumber: '',
-    city: '',
   });
 
   const firstnameId = useId();
@@ -24,9 +20,6 @@ const Register = () => {
   const phoneId = useId();
   const emailId = useId();
   const passwordId = useId();
-  const pharmacyNameId = useId();
-  const rppsId = useId();
-  const cityId = useId();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -50,13 +43,13 @@ const Register = () => {
     switch (score) {
       case 0:
       case 1:
-        return { label: 'Trop court ou simple', color: '#ef4444', percent: 25 };
+        return { label: 'Trop court', color: '#ef4444', percent: 25 };
       case 2:
         return { label: 'Moyen', color: '#f59e0b', percent: 50 };
       case 3:
         return { label: 'Bon', color: '#10b981', percent: 75 };
       case 4:
-        return { label: 'Très robuste', color: '#059669', percent: 100 };
+        return { label: 'Sécurisé', color: '#059669', percent: 100 };
       default:
         return { label: '', color: '#e2e8f0', percent: 0 };
     }
@@ -76,45 +69,60 @@ const Register = () => {
 
   return (
     <div className="auth-layout">
-      {/* Panneau Gauche : Réassurance & Marque (Desktop/Tablet) */}
+      {/* Panneau Gauche : Réassurance Santé (Desktop) */}
       <aside className="auth-side-brand">
         <div className="brand-header">
           <Link to="/" className="brand-logo">
-            <span className="logo-symbol">💊</span>
+            <svg className="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M12 2v20M2 12h20" />
+            </svg>
             <span className="brand-name">Pharma<span>Connect</span></span>
           </Link>
-          <span className="badge-official">Plateforme Santé Certifiée</span>
+          <span className="badge-official">Espace Patient</span>
         </div>
 
         <div className="brand-hero">
-          <h1>Vos médicaments sans attente, en toute sécurité.</h1>
+          <h1>Vos médicaments en toute simplicité.</h1>
           <p>
-            Rejoignez le premier réseau de santé connecté : localisez les pharmacies de garde,
-            réservez vos traitements et retirez-les en moins de 15 minutes.
+            Commandez vos ordonnances et vos traitements en ligne, suivez leur préparation
+            en temps réel et retirez-les sans attente dans votre pharmacie partenaire.
           </p>
 
           <div className="features-list">
             <div className="feature-item">
-              <span className="feature-icon">⚡</span>
+              <div className="feature-icon-wrapper">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                </svg>
+              </div>
               <div>
-                <strong>Retrait express par QR Code</strong>
-                <p>Vos commandes préparées à l'avance sans faire la queue en officine.</p>
+                <strong>Retrait express en officine</strong>
+                <p>Vos ordonnances préparées à l'avance pour éviter les files d'attente.</p>
               </div>
             </div>
 
             <div className="feature-item">
-              <span className="feature-icon">🛡️</span>
+              <div className="feature-icon-wrapper">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                </svg>
+              </div>
               <div>
-                <strong>Données de santé confidentielles</strong>
-                <p>Transmission chiffrée de vos ordonnances et conformité stricte aux normes médicales.</p>
+                <strong>Données médicales confidentielles</strong>
+                <p>Vos données personnelles et ordonnances sont protégées et chiffrées de bout en bout.</p>
               </div>
             </div>
 
             <div className="feature-item">
-              <span className="feature-icon">📍</span>
+              <div className="feature-icon-wrapper">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="12" cy="12" r="10" />
+                  <polyline points="12 6 12 12 16 14" />
+                </svg>
+              </div>
               <div>
-                <strong>Pharmacies de garde 24h/7j</strong>
-                <p>Géolocalisation en temps réel de l'officine ouverte la plus proche de chez vous.</p>
+                <strong>Pharmacies de garde 24h/24</strong>
+                <p>Accédez instantanément aux coordonnées et disponibilités des officines de garde.</p>
               </div>
             </div>
           </div>
@@ -129,103 +137,29 @@ const Register = () => {
             <div className="stat-divider"></div>
             <div className="stat">
               <span className="stat-value">15 min</span>
-              <span className="stat-label">Délai moyen de retrait</span>
+              <span className="stat-label">Préparation moyenne</span>
             </div>
           </div>
         </div>
       </aside>
 
-      {/* Panneau Droit : Formulaire d'inscription */}
+      {/* Panneau Droit : Formulaire Inscription Patient */}
       <main className="auth-main">
         <div className="auth-card">
           <header className="auth-card-header">
             <div className="mobile-brand">
               <Link to="/" className="brand-logo">
-                <span className="logo-symbol">💊</span>
+                <svg className="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M12 2v20M2 12h20" />
+                </svg>
                 <span className="brand-name">Pharma<span>Connect</span></span>
               </Link>
             </div>
-            <h2>Créer un compte</h2>
-            <p>Choisissez votre profil pour une expérience sur-mesure</p>
-
-            {/* Switch de profil Client vs Pharmacie */}
-            <div className="role-selector" role="tablist" aria-label="Type de compte">
-              <button
-                type="button"
-                role="tab"
-                aria-selected={role === 'client'}
-                className={`role-btn ${role === 'client' ? 'active' : ''}`}
-                onClick={() => setRole('client')}
-              >
-                <span className="role-icon">👤</span>
-                <div>
-                  <span className="role-title">Patient / Client</span>
-                  <span className="role-subtitle">Pour réserver mes médicaments</span>
-                </div>
-              </button>
-
-              <button
-                type="button"
-                role="tab"
-                aria-selected={role === 'pharmacist'}
-                className={`role-btn ${role === 'pharmacist' ? 'active' : ''}`}
-                onClick={() => setRole('pharmacist')}
-              >
-                <span className="role-icon">🏥</span>
-                <div>
-                  <span className="role-title">Pharmacie</span>
-                  <span className="role-subtitle">Pour gérer mon officine</span>
-                </div>
-              </button>
-            </div>
+            <h2>Créer votre compte patient</h2>
+            <p>Renseignez vos coordonnées pour activer votre espace personnel.</p>
           </header>
 
           <form className="auth-form" onSubmit={handleSubmit}>
-            {/* Champs spécifiques Pharmacie */}
-            {role === 'pharmacist' && (
-              <div className="pro-fields-notice">
-                <div className="form-group">
-                  <label htmlFor={pharmacyNameId}>Nom de la pharmacie</label>
-                  <input
-                    type="text"
-                    id={pharmacyNameId}
-                    name="pharmacyName"
-                    placeholder="Ex: Pharmacie Centrale"
-                    value={formData.pharmacyName}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-
-                <div className="form-row">
-                  <div className="form-group">
-                    <label htmlFor={rppsId}>N° d'enregistrement / RPPS</label>
-                    <input
-                      type="text"
-                      id={rppsId}
-                      name="rppsNumber"
-                      placeholder="1000XXXXXXX"
-                      value={formData.rppsNumber}
-                      onChange={handleChange}
-                      required
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor={cityId}>Ville d'exercice</label>
-                    <input
-                      type="text"
-                      id={cityId}
-                      name="city"
-                      placeholder="Ex: Cotonou"
-                      value={formData.city}
-                      onChange={handleChange}
-                      required
-                    />
-                  </div>
-                </div>
-              </div>
-            )}
-
             {/* Identité Personnelle */}
             <div className="form-row">
               <div className="form-group">
@@ -254,11 +188,11 @@ const Register = () => {
               </div>
             </div>
 
-            {/* Téléphone (essentiel pour OTP et alertes SMS) */}
+            {/* Téléphone (SMS & Notifications retrait) */}
             <div className="form-group">
               <label htmlFor={phoneId}>
                 Numéro de téléphone
-                <span className="field-hint">(Utilisé pour les alertes SMS et le retrait)</span>
+                <span className="field-hint">(Pour les alertes SMS et le retrait)</span>
               </label>
               <div className="phone-input-wrapper">
                 <span className="phone-prefix">+229</span>
@@ -288,7 +222,7 @@ const Register = () => {
               />
             </div>
 
-            {/* Mot de passe avec toggle visibilité et jauge */}
+            {/* Mot de passe avec toggle & indicateur de force */}
             <div className="form-group">
               <div className="label-with-action">
                 <label htmlFor={passwordId}>Mot de passe</label>
@@ -325,13 +259,13 @@ const Register = () => {
                     ></div>
                   </div>
                   <span className="strength-text" style={{ color: strength.color }}>
-                    Force : {strength.label}
+                    Niveau : {strength.label}
                   </span>
                 </div>
               )}
             </div>
 
-            {/* Conditions Générales */}
+            {/* Conditions d'utilisation */}
             <label className="terms-checkbox">
               <input
                 type="checkbox"
@@ -340,12 +274,12 @@ const Register = () => {
                 required
               />
               <span>
-                J'accepte les <a href="#terms">Conditions d'Utilisation</a> et la{' '}
-                <a href="#privacy">Politique de Confidentialité</a> des données de santé.
+                J'accepte les <a href="#terms">conditions d'utilisation</a> et la{' '}
+                <a href="#privacy">politique de protection des données</a>.
               </span>
             </label>
 
-            {/* Bouton d'action avec état de chargement */}
+            {/* Bouton d'action */}
             <button
               type="submit"
               className="btn btn-primary btn-submit"
@@ -353,17 +287,15 @@ const Register = () => {
             >
               {loading ? (
                 <span className="loading-spinner">Création du compte...</span>
-              ) : role === 'pharmacist' ? (
-                'Inscrire mon officine'
               ) : (
-                'Créer mon compte Patient'
+                'Créer mon compte'
               )}
             </button>
           </form>
 
           <footer className="auth-card-footer">
             <p>
-              Vous possédez déjà un compte ?{' '}
+              Vous avez déjà un compte ?{' '}
               <Link to="/login" className="login-link">
                 Se connecter
               </Link>
@@ -380,7 +312,7 @@ const Register = () => {
           background: #f8fafc;
         }
 
-        /* --- PANNEAU GAUCHE BRAND --- */
+        /* --- PANNEAU GAUCHE MARQUE & REASSURANCE --- */
         .auth-side-brand {
           background: linear-gradient(165deg, #064e3b 0%, #059669 60%, #0284c7 100%);
           color: white;
@@ -410,14 +342,15 @@ const Register = () => {
         .brand-logo {
           display: inline-flex;
           align-items: center;
-          gap: 0.6rem;
+          gap: 0.65rem;
           text-decoration: none;
           color: white;
         }
 
-        .logo-symbol {
-          font-size: 1.8rem;
-          line-height: 1;
+        .logo-icon {
+          width: 28px;
+          height: 28px;
+          stroke: #ffffff;
         }
 
         .brand-name {
@@ -468,14 +401,21 @@ const Register = () => {
           gap: 1rem;
         }
 
-        .feature-icon {
-          font-size: 1.3rem;
+        .feature-icon-wrapper {
+          width: 38px;
+          height: 38px;
+          min-width: 38px;
+          border-radius: 0.65rem;
           background: rgba(255, 255, 255, 0.15);
-          border-radius: 0.75rem;
-          padding: 0.5rem;
-          display: inline-flex;
+          display: flex;
           align-items: center;
           justify-content: center;
+        }
+
+        .feature-icon-wrapper svg {
+          width: 20px;
+          height: 20px;
+          stroke: #ffffff;
         }
 
         .feature-item strong {
@@ -522,7 +462,7 @@ const Register = () => {
           background: rgba(255, 255, 255, 0.2);
         }
 
-        /* --- PANNEAU DROIT FORM --- */
+        /* --- PANNEAU DROIT FORMULAIRE --- */
         .auth-main {
           display: flex;
           align-items: center;
@@ -533,7 +473,7 @@ const Register = () => {
 
         .auth-card {
           width: 100%;
-          max-width: 520px;
+          max-width: 500px;
           background: #ffffff;
           padding: 2.75rem;
           border-radius: 1.5rem;
@@ -546,6 +486,18 @@ const Register = () => {
           margin-bottom: 1.5rem;
         }
 
+        .mobile-brand .brand-logo {
+          color: #059669;
+        }
+
+        .mobile-brand .logo-icon {
+          stroke: #059669;
+        }
+
+        .mobile-brand .brand-name span {
+          color: #0f172a;
+        }
+
         .auth-card-header h2 {
           font-size: 1.75rem;
           font-weight: 800;
@@ -556,61 +508,13 @@ const Register = () => {
         .auth-card-header p {
           color: #64748b;
           font-size: 0.95rem;
-          margin-bottom: 1.5rem;
+          margin-bottom: 2rem;
         }
 
-        /* Rôle sélecteur */
-        .role-selector {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 0.75rem;
-          margin-bottom: 1.75rem;
-          background: #f1f5f9;
-          padding: 0.35rem;
-          border-radius: 1rem;
-        }
-
-        .role-btn {
-          display: flex;
-          align-items: center;
-          gap: 0.6rem;
-          padding: 0.75rem 0.9rem;
-          border-radius: 0.75rem;
-          border: 1px solid transparent;
-          background: transparent;
-          text-align: left;
-          cursor: pointer;
-          transition: all 0.2s ease;
-        }
-
-        .role-btn.active {
-          background: #ffffff;
-          border-color: #e2e8f0;
-          box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05);
-        }
-
-        .role-icon {
-          font-size: 1.3rem;
-        }
-
-        .role-title {
-          display: block;
-          font-size: 0.85rem;
-          font-weight: 700;
-          color: #0f172a;
-        }
-
-        .role-subtitle {
-          display: block;
-          font-size: 0.72rem;
-          color: #64748b;
-        }
-
-        /* Formulaire */
         .auth-form {
           display: flex;
           flex-direction: column;
-          gap: 1.15rem;
+          gap: 1.25rem;
         }
 
         .form-row {
@@ -622,7 +526,7 @@ const Register = () => {
         .form-group {
           display: flex;
           flex-direction: column;
-          gap: 0.4rem;
+          gap: 0.45rem;
         }
 
         label {
@@ -652,7 +556,7 @@ const Register = () => {
           color: #059669;
           font-weight: 600;
           padding: 0;
-          text-decoration: underline;
+          cursor: pointer;
         }
 
         input {
@@ -702,7 +606,7 @@ const Register = () => {
           box-shadow: none !important;
         }
 
-        /* Barre de force mot de passe */
+        /* Barre de robustesse mot de passe */
         .password-strength-container {
           margin-top: 0.25rem;
           display: flex;
@@ -726,16 +630,6 @@ const Register = () => {
         .strength-text {
           font-size: 0.75rem;
           font-weight: 600;
-        }
-
-        .pro-fields-notice {
-          display: flex;
-          flex-direction: column;
-          gap: 1.15rem;
-          padding: 1rem;
-          background: #ecfdf5;
-          border: 1px solid #a7f3d0;
-          border-radius: 0.85rem;
         }
 
         /* Checkbox CGU */
