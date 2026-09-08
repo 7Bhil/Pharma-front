@@ -1,10 +1,16 @@
-import { useState, useMemo } from 'react';
+import React, { useState, useMemo } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import MedicineCard from './components/MedicineCard';
-import { mockMedicines, categories } from './data/mockData';
+import { 
+  mockMedicines, 
+  categories,
+  mockPharmacies,
+  mockHeroLiveItems,
+  mockPlatformMetrics
+} from './data/mockData';
 
 const LandingPage = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -122,27 +128,17 @@ const LandingPage = () => {
                 </div>
 
                 <div className="demo-med-list">
-                  <div className="demo-item">
-                    <div className="demo-item-info">
-                      <div className="demo-title">Amoxicilline 500mg</div>
-                      <div className="demo-detail">3 200 F CFA • Boîte de 12 gélules</div>
+                  {mockHeroLiveItems.map((item) => (
+                    <div key={item.id} className="demo-item">
+                      <div className="demo-item-info">
+                        <div className="demo-title">{item.title}</div>
+                        <div className="demo-detail">{item.detail}</div>
+                      </div>
+                      <span className={item.statusType === 'low_stock' ? 'badge-stock-warning' : 'badge-stock-in'}>
+                        {item.statusBadge}
+                      </span>
                     </div>
-                    <span className="badge-stock-in">20 boîtes disp.</span>
-                  </div>
-                  <div className="demo-item">
-                    <div className="demo-item-info">
-                      <div className="demo-title">Paracétamol Pro 1g</div>
-                      <div className="demo-detail">1 500 F CFA • Boîte de 8 comprimés</div>
-                    </div>
-                    <span className="badge-stock-in">50 boîtes disp.</span>
-                  </div>
-                  <div className="demo-item">
-                    <div className="demo-item-info">
-                      <div className="demo-title">Sirop Toux Sèche Pectoral</div>
-                      <div className="demo-detail">3 500 F CFA • Flacon 150ml</div>
-                    </div>
-                    <span className="badge-stock-warning">Stock limité (4)</span>
-                  </div>
+                  ))}
                 </div>
 
                 <div className="widget-action-panel">
@@ -161,25 +157,15 @@ const LandingPage = () => {
         {/* METRICS STRIP */}
         <section className="metrics-strip">
           <div className="container strip-grid">
-            <div className="strip-item">
-              <div className="strip-value">99.4%</div>
-              <div className="strip-label">Fiabilité des stocks déclarés</div>
-            </div>
-            <div className="strip-divider"></div>
-            <div className="strip-item">
-              <div className="strip-value">&lt; 20 min</div>
-              <div className="strip-label">Délai moyen de préparation ordonnance</div>
-            </div>
-            <div className="strip-divider"></div>
-            <div className="strip-item">
-              <div className="strip-value">1 420+</div>
-              <div className="strip-label">Officines de garde & partenaires</div>
-            </div>
-            <div className="strip-divider"></div>
-            <div className="strip-item">
-              <div className="strip-value">180k+</div>
-              <div className="strip-label">Traitements sécurisés ce mois-ci</div>
-            </div>
+            {mockPlatformMetrics.map((metric, idx) => (
+              <React.Fragment key={metric.id}>
+                <div className="strip-item">
+                  <div className="strip-value">{metric.value}</div>
+                  <div className="strip-label">{metric.label}</div>
+                </div>
+                {idx < mockPlatformMetrics.length - 1 && <div className="strip-divider"></div>}
+              </React.Fragment>
+            ))}
           </div>
         </section>
 
@@ -360,10 +346,12 @@ const LandingPage = () => {
 
                   <div className="form-row">
                     <label>Pharmacie de retrait souhaitée</label>
-                    <select className="form-select" defaultValue="1">
-                      <option value="1">Pharmacie Centrale du Plateau</option>
-                      <option value="2">Pharmacie de la Corniche</option>
-                      <option value="3">Pharmacie des Jardins</option>
+                    <select className="form-select" defaultValue={mockPharmacies[0]?.id}>
+                      {mockPharmacies.map((pharmacy) => (
+                        <option key={pharmacy.id} value={pharmacy.id}>
+                          {pharmacy.name} ({pharmacy.distance}) - {pharmacy.statusText}
+                        </option>
+                      ))}
                     </select>
                   </div>
 

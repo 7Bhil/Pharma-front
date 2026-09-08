@@ -1,3 +1,9 @@
+/**
+ * PharmaConnect - Données factices structurées (Mock Data)
+ * Conçu pour correspondre aux futures réponses API REST / JSON du backend Laravel.
+ */
+
+// Liste des médicaments en catalogue
 export const mockMedicines = [
   {
     id: 1,
@@ -61,6 +67,7 @@ export const mockMedicines = [
   }
 ];
 
+// Catégories de médicaments disponibles
 export const categories = [
   "Tous",
   "Antalgique",
@@ -70,3 +77,84 @@ export const categories = [
   "Voies Respiratoires",
   "Hygiène"
 ];
+
+// Pharmacies partenaires / de garde pour le simulateur et le sélecteur
+export const mockPharmacies = [
+  {
+    id: 1,
+    name: "Pharmacie Centrale du Plateau",
+    address: "Boulevard de la République",
+    distance: "À 450m",
+    statusText: "Ouverte jusqu'à 22h00",
+    isGuard: true
+  },
+  {
+    id: 2,
+    name: "Pharmacie de la Corniche",
+    address: "Avenue Jean Jaurès",
+    distance: "À 850m",
+    statusText: "Ouverte 24h/24",
+    isGuard: true
+  },
+  {
+    id: 3,
+    name: "Pharmacie des Jardins",
+    address: "Rue des Écoles",
+    distance: "À 1.2km",
+    statusText: "Ouverte jusqu'à 20h00",
+    isGuard: false
+  }
+];
+
+// Médicaments en démonstration dans le widget Hero
+export const mockHeroLiveItems = [
+  {
+    id: 1,
+    title: "Amoxicilline 500mg",
+    detail: "3 200 F CFA • Boîte de 12 gélules",
+    stockCount: 20,
+    statusBadge: "20 boîtes disp.",
+    statusType: "in_stock"
+  },
+  {
+    id: 2,
+    title: "Paracétamol Pro 1g",
+    detail: "1 500 F CFA • Boîte de 8 comprimés",
+    stockCount: 50,
+    statusBadge: "50 boîtes disp.",
+    statusType: "in_stock"
+  },
+  {
+    id: 3,
+    title: "Sirop Toux Sèche Pectoral",
+    detail: "3 500 F CFA • Flacon 150ml",
+    stockCount: 4,
+    statusBadge: "Stock limité (4)",
+    statusType: "low_stock"
+  }
+];
+
+// Métriques d'impact de la plateforme
+export const mockPlatformMetrics = [
+  {
+    id: "reliability",
+    value: "99.4%",
+    label: "Fiabilité des stocks déclarés"
+  },
+  {
+    id: "time",
+    value: "< 20 min",
+    label: "Délai moyen de préparation ordonnance"
+  },
+  {
+    id: "pharmacies",
+    value: "1 420+",
+    label: "Officines de garde & partenaires"
+  },
+  {
+    id: "orders",
+    value: "180k+",
+    label: "Traitements sécurisés ce mois-ci"
+  }
+];
+
