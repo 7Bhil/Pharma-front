@@ -7,6 +7,7 @@ import DashboardLayout from "./pages/dashboard/DashboardLayout";
 import MedicineCard from "./components/MedicineCard";
 import MedicineDetailModal from "./components/MedicineDetailModal";
 import CartDrawer from "./components/CartDrawer";
+import PWAInstallPrompt from "./components/PWAInstallPrompt";
 import { 
   mockMedicines, 
   categories, 
@@ -729,6 +730,9 @@ function App() {
           setCartItems([]);
         }}
       />
+
+      {/* PWA Install Banner */}
+      <PWAInstallPrompt />
     </Router>
   );
 }
